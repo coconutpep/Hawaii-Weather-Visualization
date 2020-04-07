@@ -70,6 +70,19 @@ def stations():
 
     return jsonify(stations)
 
+@app.route('/api/v1.0/tobs')
+def tobs():
+    session = Session(engine)
+    results = session.query(Measurement.date, Measurement.tobs).filter(Measurement.station == 'USC00519281').\
+        filter(Measurement.date.between('2016-08-23', '2017-08-23')).all()
+    session.close()
+
+    tobs = {}
+    for result in results:
+        date = result.date
+        tobs[date] = result.tobs
+    
+    return jsonify(tobs)
          
 if __name__ == '__main__':
     app.run(debug=True)
