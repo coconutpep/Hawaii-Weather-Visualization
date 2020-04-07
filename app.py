@@ -28,7 +28,7 @@ app = Flask(__name__)
 @app.route('/')
 def home():
     return (
-        f'Available Routes:</br>'
+        f'<h1>Available Routes:</h1></br>'
         f'<ul>'
         f'<li>/api/v1.0/precipitation</li></br>'
         f'<li>/api/v1.0/stations</li><br>'
@@ -51,5 +51,25 @@ def precipitation():
 
     return jsonify(precipitations)
 
+@app.route('/api/v1.0/stations')
+def stations():
+    session = Session(engine)
+    results = session.query(Station).all()
+    session.close()
+
+    stations = []
+    for result in results:
+        station_dict = {}
+        station_dict['id'] = result.id
+        station_dict['station'] = result.station
+        station_dict['name'] = result.name
+        station_dict['latitude'] = result.latitude
+        station_dict['longitude'] = result.longitude
+        station_dict['elevation'] = result.elevation
+        stations.append(station_dict)
+
+    return jsonify(stations)
+
+         
 if __name__ == '__main__':
     app.run(debug=True)
