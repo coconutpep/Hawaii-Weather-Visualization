@@ -1,5 +1,4 @@
 #Import Dependencies
-import datetime as dt
 import sqlalchemy
 from sqlalchemy.ext.automap import automap_base
 from sqlalchemy.orm import Session
