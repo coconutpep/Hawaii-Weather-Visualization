@@ -99,6 +99,22 @@ def start(start):
         stats['avg'] = avg
     
     return jsonify(stats)
-         
+
+@app.route('/api/v1.0/<start>/<end>')
+def startEnd(start, end):
+    session = Session(engine)
+    results = session.query(func.min(Measurement.tobs), func.max(Measurement.tobs), func.avg(Measurement.tobs)).\
+        filter(Measurement.date.between(start, end)).all()
+    session.close()
+
+    stats = {}
+    for result in results:
+        (min, max, avg) = result
+        stats['min'] = min
+        stats['max'] = max
+        stats['avg'] = avg
+    
+    return jsonify(stats)
+
 if __name__ == '__main__':
     app.run(debug=True)
