@@ -22,3 +22,21 @@ Station = Base.classes.station
 ########################
 app = Flask(__name__)
 
+########################
+#Flask Routes
+########################
+@app.route('/')
+def home():
+    return (
+        f'Available Routes:</br>'
+        f'<ul>'
+        f'<li>/api/v1.0/precipitation</li></br>'
+        f'<li>/api/v1.0/stations</li><br>'
+        f'<li>/api/v1.0/tobs</li></br>'
+        f'<li>/api/v1.0/&#60start&#62</li></br>'
+        f'<li>/api/v1.0/&#60start&#62/&#60end&#62</li></br>'
+        f'</ul>'
+    )
+
+if __name__ == '__main__':
+    app.run(debug=True)
