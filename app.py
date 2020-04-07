@@ -38,5 +38,18 @@ def home():
         f'</ul>'
     )
 
+@app.route('/api/v1.0/precipitation')
+def precipitation():
+    session = Session(engine)
+    results = session.query(Measurement.date, Measurement.prcp).order_by(Measurement.date).all()
+    session.close()
+
+    precipitations = {}
+    for result in results:
+        date = str(result.date)
+        precipitations[date] = result.prcp
+
+    return jsonify(precipitations)
+
 if __name__ == '__main__':
     app.run(debug=True)
