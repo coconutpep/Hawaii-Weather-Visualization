@@ -30,11 +30,17 @@ def home():
     return (
         f'<h1>Available Routes:</h1></br>'
         f'<ul>'
-        f'<li>/api/v1.0/precipitation</li></br>'
-        f'<li>/api/v1.0/stations</li><br>'
-        f'<li>/api/v1.0/tobs</li></br>'
-        f'<li>/api/v1.0/&#60start&#62</li></br>'
-        f'<li>/api/v1.0/&#60start&#62/&#60end&#62</li></br>'
+        f'<li>/api/v1.0/precipitation</li>'
+        f'<li>/api/v1.0/stations</li>'
+        f'<li>/api/v1.0/tobs</li>'
+        f'<li>/api/v1.0/&#60start&#62</li>'
+        f'<ul>'
+        f'<li>Use yyyy-mm-dd notation</li>'
+        f'</ul>'
+        f'<li>/api/v1.0/&#60start&#62/&#60end&#62</li>'
+        f'<ul>'
+        f'<li>Use yyyy-mm-dd notation</li>'
+        f'</ul>'
         f'</ul>'
     )
 
